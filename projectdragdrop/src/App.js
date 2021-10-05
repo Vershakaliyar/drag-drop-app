@@ -21,6 +21,9 @@ function App() {
     { name: "#123455" },
      { name: "#123455" },
     { name: "#123455" },
+    { name: "#123455" },
+     { name: "#123455" },
+    { name: "#123455" },
   ]);
 
   const [team, setTeam] = useState([]);
@@ -32,7 +35,7 @@ function App() {
 
   console.log(isOver);
   const [{ isOver: isPlayerOver }, removeFromTeamRef] = useDrop({
-    accept: "team",
+    accept: "Player",
     collect: (monitor) => ({ isOver: !!monitor.isOver() }),
   });
 
@@ -45,13 +48,18 @@ function App() {
     setTeam((prev) => prev.filter((_, i) => item.index !== i));
     setPlayer((prev) => [...prev, item]);
   };
+  
+  const additionPlayerFromTeam = (item) => {
+    setTeam((prev) => prev.filter((_, i) => item.index !== i));
+    setPlayer((prev) => [...prev, item]);
+  };
 
   return (
     <Container maxW="100%">
       
 
-      <Flex justify="space-between" >
-        <Stack width="30%">
+      <Flex justify="content" >
+        <Stack width="90%">
           <Heading fontSize="xl" color="yellow.800" textAlign="center">
             PO Number
           </Heading>
@@ -139,8 +147,8 @@ function App() {
           <List
             bgGradient={
               isOver
-                ? "linear(to-b, white, white)"
-                : "linear(to-b, white, white)"
+                ? "linear(to-b, white, #FFFF)"
+                : "linear(to-b, white, #FFFF)"
             }
             ref={addToTeamRef}
             minH="70vh"
